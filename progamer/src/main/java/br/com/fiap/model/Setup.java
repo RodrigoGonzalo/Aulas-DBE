@@ -16,6 +16,7 @@ public class Setup {
 	private String name = "Meu Setup";
 	private String description = "Descrição";
 	private BigDecimal price = new BigDecimal(2000);
+	private String imagePath;
 	
 	public Long getId() {
 		return id;
@@ -43,6 +44,14 @@ public class Setup {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	@Override
