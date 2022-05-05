@@ -2,39 +2,52 @@ package br.com.fiap.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Setup {
-	private String NomeSetup = "Meu Setup";
-	private String Descricao = "Descrição";
-	private BigDecimal Preco = new BigDecimal(10000);
 
-	public String getDescricao() {
-		return Descricao;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name = "Meu Setup";
+	private String description = "Descrição";
+	private BigDecimal price = new BigDecimal(2000);
+	
+	public Long getId() {
+		return id;
 	}
 
-	public void setDescricao(String descricao) {
-		Descricao = descricao;
+	public String getName() {
+		return name;
 	}
 
-	public BigDecimal getPreco() {
-		return Preco;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		Preco = preco;
+	public String getDescription() {
+		return description;
 	}
 
-	public String getNomeSetup() {
-		return NomeSetup;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void setNomeSetup(String nomeSetup) {
-		NomeSetup = nomeSetup;
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	@Override
 	public String toString() {
-		return "Setup [NomeSetup=" + NomeSetup + ", Descricao=" + Descricao + ", Preco=" + Preco + "]";
+		return "Setup [name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
-	
-	
+
 }
