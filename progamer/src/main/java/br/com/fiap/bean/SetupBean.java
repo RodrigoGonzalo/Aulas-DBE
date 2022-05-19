@@ -81,5 +81,23 @@ public class SetupBean {
 	public void setImage(UploadedFile image) {
 		this.image = image;
 	}
+	
+	public String delete(Setup setup) {
+		setupDao.remove(setup);
+		
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PARABÉNS!!! Seu setup foi APAGADO com SUCESSO!!!"));
+		
+		return "setups?faces-redirect=true";
+	}
+	
+	public void edit() {
+		
+		setupDao.update(setup);
+		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PARABÉNS!!! Seu setup foi APAGADO com SUCESSO!!!"));
+
+	}
 
 }
