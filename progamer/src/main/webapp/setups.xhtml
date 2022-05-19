@@ -8,25 +8,37 @@
 
 <ui:composition template="_template.xhtml">
 	<ui:define name="content">
-	
+
 		<p:messages id="messages" closable="true">
-					<p:autoUpdate />
+			<p:autoUpdate />
 		</p:messages>
-		
+
 		<!-- TABELA -->
 		<h:form>
 			<div class="card">
-				<p:dataTable var="setup" value="#{setupBean.list}">
+				<p:dataTable var="setup" value="#{setupBean.list}" editable="true">
+					<p:ajax event="rowEdit" listener="#{setupBean.edit()}"
+						update="messages" />
+
 					<p:column headerText="Image">
-						<img src="#{request.contextPath}#{setup.imagePath}" style="width: 150px"/>
+						<img src="#{request.contextPath}#{setup.imagePath}"
+							style="width: 150px" />
 					</p:column>
-					
+
 					<p:column headerText="ID">
 						<h:outputText value="#{setup.id}" />
 					</p:column>
 
 					<p:column headerText="Name">
-						<h:outputText value="#{setup.name}" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{setup.name}" />
+							</f:facet>
+
+							<f:facet name="input">
+								<h:inputText value="#{setup.name}" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 
 					<p:column headerText="Description">
@@ -35,6 +47,16 @@
 
 					<p:column headerText="Price">
 						<h:outputText value="#{setup.price}" />
+					</p:column>
+
+					<p:column>
+						<p:commandButton title="delete setup"
+							action="#{setupBean.delete(setup)}" icon="pi pi-trash"
+							styleClass="rounded-button ui-button-danger ui-button-flat" />
+					</p:column>
+					<p:column style="width:6rem">
+						<p:rowEditor editTitle="Edit Setup" cancelTitle="Cancel Edit"
+							saveTitle="Save Setup"/>
 					</p:column>
 				</p:dataTable>
 			</div>

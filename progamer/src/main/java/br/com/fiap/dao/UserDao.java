@@ -31,4 +31,21 @@ public class UserDao {
 		return query.getResultList();
 	}
 
+	public boolean exist(User user) {
+		// TODO Auto-generated method stub
+		String jpql = "SELECT u FROM User u WHERE email=:email AND password=:password";
+		TypedQuery<User> query = manager.createQuery(jpql, User.class);
+		query.setParameter("email", user.getEmail());
+		query.setParameter("password", user.getPassword());
+		
+		try {
+			query.getSingleResult();
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

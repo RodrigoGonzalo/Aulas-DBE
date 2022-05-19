@@ -4,6 +4,8 @@ package br.com.fiap.bean;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import br.com.fiap.dao.UserDao;
@@ -46,5 +48,28 @@ public class UserBean {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public String login() {
+		// Verificar se existe um usuario
+		if (userDao.exist(user)) {
+			
+			// salvar na secao
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+			return "setups";
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login Invalido"));
+		
+		return "login?faces-redirect=true";
+	}
+	
+	public String logout(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
+
+		return "login";
+	}
+
 
 }
