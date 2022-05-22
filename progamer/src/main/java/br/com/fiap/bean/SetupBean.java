@@ -96,7 +96,7 @@ public class SetupBean {
 		
 		setupDao.update(setup);
 		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PARABÉNS!!! Seu setup foi APAGADO com SUCESSO!!!"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PARABÉNS!!! Seu setup foi ATUALIZADO com SUCESSO!!!"));
 
 	}
 

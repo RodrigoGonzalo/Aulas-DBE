@@ -13,9 +13,9 @@
 		<view-id value="/setup_new.xhtml" />
 	</url-mapping>
 	
-	<url-mapping id="profile">
-		<pattern value="/profile" />
-		<view-id value="/profile.xhtml" />
+	<url-mapping id="register">
+		<pattern value="/register" />
+		<view-id value="/register.xhtml" />
 	</url-mapping>
 	
 	<url-mapping id="profiles">

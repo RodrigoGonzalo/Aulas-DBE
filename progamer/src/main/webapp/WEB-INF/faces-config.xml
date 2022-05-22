@@ -6,6 +6,7 @@
 		br.com.fiap.auth.AuthorizationListener
 	</phase-listener>
 </lifecycle>
+
 	
 	
 </faces-config>

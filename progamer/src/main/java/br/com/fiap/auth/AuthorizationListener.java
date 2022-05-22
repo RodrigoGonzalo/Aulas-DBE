@@ -7,36 +7,48 @@ import javax.faces.event.PhaseListener;
 
 import br.com.fiap.model.User;
 
-public class AuthorizationListener implements PhaseListener{
+public class AuthorizationListener implements PhaseListener {
 
 	@Override
 	public void afterPhase(PhaseEvent arg0) {
-		// TODO Auto-generated method stub
-		String Page = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+		String page = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+		System.out.println("ACESSANDO A PÁGINA " + page);
 
-		if(Page.equals("/login.xhtml") || Page.equals("register.html")) {
+		if (page.equals("/login.xhtml") || page.equals("/register.xhtml")) {
 			return;
 		}
-		// Se o usuario nao esta logado, vai pra login
-		User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-		
-		if(user != null) return;
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "login.xhtml");
-		
-		// Se nao deixa quieto
+
+		// early return
+
+		// Se o usuário não está logado, vai para login
+		User user = (User) FacesContext
+							.getCurrentInstance()
+							.getExternalContext()
+							.getSessionMap()
+							.get("user");
+
+		if (user != null)
+			return;
+
+		FacesContext
+			.getCurrentInstance()
+			.getApplication()
+			.getNavigationHandler()
+			.handleNavigation(FacesContext.getCurrentInstance(), null, "login.xhtml");
+		;
+
+		// Caso contrário, deixa pra lá
 	}
 
 	@Override
 	public void beforePhase(PhaseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public PhaseId getPhaseId() {
-		// TODO Auto-generated method stub
 		return PhaseId.RESTORE_VIEW;
 	}
-	
-	
+
 }
