@@ -8,12 +8,12 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="content">
 		<!-- Form Setup -->
+		<p:messages id="messages" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<h:form enctype="multipart/form-data">
 			<p:card style="width: 25em; margin: 1em auto">
 
-				<p:messages id="messages" closable="true">
-					<p:autoUpdate />
-				</p:messages>
 
 				<f:facet name="title">New Setup</f:facet>
 				<div class="ui-fluid">
@@ -30,13 +30,11 @@
 
 						<label for="description">Description</label>
 						<p:inputTextarea id="description" type="text"
-							value="#{setupBean.setup.description}"  
-							required="true" 
+							value="#{setupBean.setup.description}" required="true"
 							requiredMessage="A descrição é obrigatória"
-							>
-						
-							<f:ajax event="blur" render="messages"/>
-							<f:validateLength minimum="20"/>
+							validatorMessage="A descrição deve ter pelo menos 20 caracteres">
+							<f:ajax event="blur" render="messages" />
+							<f:validateLength minimum="20" />
 						</p:inputTextarea>
 					</div>
 
@@ -45,16 +43,18 @@
 						<p:inputNumber id="price" symbol="R$ " decimalSeparator=","
 							thousandSeparator="." value="#{setupBean.setup.price}"
 							required="true" requiredMessage="O preço é obrigatório"
-							validatorMessage="O preço deve ser pelo menos R$ 1,00">
+							validatorMessage="O preço deve ser pelo menos R$1,00">
 							<f:validateDoubleRange minimum="1" />
-							<f:ajax event="blur" render="messages"/>
-						
+							<f:ajax event="blur" render="messages" />
 						</p:inputNumber>
-						
-						<div class="p-field">
-							<label for="image">Image File:</label>
-							<p:fileUpload id="image" mode="simple" skinSimple="true" value="#{setupBean.image}"/>
-						</div>
+					</div>
+					
+					<div class="p-field">
+						<label for="image">Image File:</label>
+						<p:fileUpload id="image" 
+							mode="simple" 
+							skinSimple="true"
+							value="#{setupBean.image}"/>
 					</div>
 
 				</div>

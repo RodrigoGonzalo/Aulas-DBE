@@ -15,6 +15,7 @@ public class User {
 	private LocalDate birthDate = LocalDate.of(1996, 10, 27);
 	private String email = "email@email.com";
 	private String password = "Pa$$w0rd";
+	private String imagePath;
 	
 	public Long getId() {
 		return id;
@@ -47,6 +48,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getImagePath(){
+		return imagePath;
+	}
+	
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	
 	@Override
 	public String toString() {
